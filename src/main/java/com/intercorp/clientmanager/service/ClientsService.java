@@ -32,7 +32,7 @@ public class ClientsService implements IClientsService, IDeathDateCalculator {
     public List<Cliente> getClientsWithProbablyDeathDate() {
         List<Cliente> allClients = clientsDao.findAll();
         allClients
-                .forEach(cliente -> cliente.setProbablyDeathDate(calculateDeathDate(cliente.getFechaNacimiento())));
+                .forEach(cliente -> cliente.setProbablyDeathDate(calculateDeathDate(cliente.getBirthDate())));
         return allClients;
     }
 
@@ -50,7 +50,7 @@ public class ClientsService implements IClientsService, IDeathDateCalculator {
         if (allClients.isEmpty()) return mapsOfKpiValues;
         final List<Integer> allAges = allClients
                 .stream()
-                .mapToInt(Cliente::getEdad)
+                .mapToInt(Cliente::getAge)
                 .boxed()
                 .collect(Collectors.toList());
         Double ageAverage = StatisticsHelperMethods
@@ -58,7 +58,7 @@ public class ClientsService implements IClientsService, IDeathDateCalculator {
         Double standarDeviation = StatisticsHelperMethods
                 .calculateStandardDeviation(allAges);
 
-        mapsOfKpiValues.put("promedioEdad", ageAverage != 0.0 ? ageAverage : 0.0);
+        mapsOfKpiValues.put("promedioEdad", ageAverage);
         mapsOfKpiValues.put("desviacionEstandar", standarDeviation);
         return mapsOfKpiValues;
     }

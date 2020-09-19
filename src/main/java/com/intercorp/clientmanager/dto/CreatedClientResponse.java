@@ -9,9 +9,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.intercorp.clientmanager.domain.Cliente;
 import org.springframework.http.ResponseEntity;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class CreatedClientResponse {
     private String id;
@@ -73,7 +71,7 @@ public class CreatedClientResponse {
 
     public static ResponseEntity<CreatedClientResponse> from(Cliente cliente) {
         return ResponseEntity
-                .ok(new CreatedClientResponse(String.valueOf(cliente.getId()), cliente.getNombre(), cliente.getApellido(), cliente.getEdad(), cliente.getFechaNacimiento()));
+                .ok(new CreatedClientResponse(String.valueOf(cliente.getId()), cliente.getName(), cliente.getLastName(), cliente.getAge(), cliente.getBirthDate()));
     }
 
 }

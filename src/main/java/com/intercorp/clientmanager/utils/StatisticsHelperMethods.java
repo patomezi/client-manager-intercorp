@@ -1,6 +1,5 @@
 package com.intercorp.clientmanager.utils;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public class StatisticsHelperMethods {
@@ -15,10 +14,6 @@ public class StatisticsHelperMethods {
 
     public static double calculateStandardDeviation(Collection<Integer> values) {
         double average = calculateAverage(values);
-        int sum = values
-                .stream()
-                .mapToInt(Integer::intValue)
-                .sum();
         double standardDeviation = 0.0;
         for (double num : values) {
             standardDeviation += Math.pow(num - average, 2);

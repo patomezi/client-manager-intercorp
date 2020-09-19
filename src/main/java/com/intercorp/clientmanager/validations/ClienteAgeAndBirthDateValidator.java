@@ -16,7 +16,6 @@ public class ClienteAgeAndBirthDateValidator implements ConstraintValidator<Vali
 
     public boolean isValid(NewClientRequest newClientRequest, ConstraintValidatorContext context) {
         if (newClientRequest.getFechaDeNacimiento() == null) return false;
-
         final ZonedDateTime zonedBirthDate = newClientRequest.getFechaDeNacimiento().atZone(ZoneOffset.UTC);
         return  newClientRequest.getEdad() - (calculateAge(zonedBirthDate.toLocalDate(), LocalDate.now())) == 0;
     }

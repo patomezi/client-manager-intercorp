@@ -1,7 +1,5 @@
 package com.intercorp.clientmanager.domain;
 
-import org.springframework.data.annotation.Transient;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,22 +14,21 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String nombre;
+    private String name;
     @Column
-    private String apellido;
+    private String lastName;
     @Column
-    private int edad;
+    private int age;
     @Column
-    private LocalDate fechaNacimiento;
+    private LocalDate birthDate;
 
-    @Transient
     private LocalDate probablyDeathDate;
 
-    public Cliente(final String nombre, final String apellido, final Integer edad, final LocalDate fechaNacimiento) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.fechaNacimiento = fechaNacimiento;
+    public Cliente(final String name, final String lastName, final Integer age, final LocalDate birthDate) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.birthDate = birthDate;
     }
 
     public Cliente(){};
@@ -40,36 +37,36 @@ public class Cliente implements Serializable {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String nombre) {
+        this.name = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setLastName(String apellido) {
+        this.lastName = apellido;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getAge() {
+        return age;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setAge(int edad) {
+        this.age = edad;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setBirthDate(LocalDate fechaNacimiento) {
+        this.birthDate = fechaNacimiento;
     }
 
     public LocalDate getProbablyDeathDate() {
