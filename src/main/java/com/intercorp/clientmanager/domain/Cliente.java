@@ -2,13 +2,26 @@ package com.intercorp.clientmanager.domain;
 
 import org.springframework.data.annotation.Transient;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Cliente {
+@Entity
+public class Cliente implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String nombre;
+    @Column
     private String apellido;
+    @Column
     private int edad;
+    @Column
     private LocalDate fechaNacimiento;
 
     @Transient

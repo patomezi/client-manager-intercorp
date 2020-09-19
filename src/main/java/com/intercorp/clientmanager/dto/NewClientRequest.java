@@ -1,15 +1,19 @@
 package com.intercorp.clientmanager.dto;
 
 
+import com.intercorp.clientmanager.domain.Cliente;
 import com.intercorp.clientmanager.validations.ValidClienteRequest;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 
 @ValidClienteRequest
-public class ClientRequest {
+public class NewClientRequest {
     @NotNull
     @NotBlank
     private String nombre;
@@ -17,7 +21,8 @@ public class ClientRequest {
     @NotBlank
     private String apellido;
     @NotNull
-    @Min(value = 0L, message = "La edad debe ser positiva")
+    @Min(value = 18L, message = "la persona debe ser mayor de edad")
+    @Max(value = 130L, message = "Supuera la edad máxima permitida")
     private int edad;
     @NotNull
     private Instant fechaDeNacimiento;
@@ -52,5 +57,9 @@ public class ClientRequest {
 
     public void setFechaDeNacimiento(Instant fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
+    public Cliente toDomain() {
+        return new Cliente(nombre, apellido, edad, fechaDeNacimiento.atZone(ZoneOffset.UTC).toLocalDate());
     }
 }
